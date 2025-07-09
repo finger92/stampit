@@ -1,4 +1,4 @@
-# 🌊 MCP Watermark Server
+# 🎯 Stamp it - Apply a full-screen watermark to an image
 
 A professional image watermarking service built with FastMCP, supporting both text and image watermarks with intelligent color adaptation.
 
@@ -16,6 +16,38 @@ A professional image watermarking service built with FastMCP, supporting both te
 - 📁 **Smart Saving**: Auto-save in the same directory as original image
 - ⚡ **Performance Optimized**: Font caching, intelligent scaling, memory management
 - 🛠️ **Rich Format Support**: Supports 7 common image formats
+
+
+## 📖 Usage
+
+### MCP Client Configuration
+
+#### Cherry Studio (Recommended)
+
+1. **Open Cherry Studio Settings**
+   - Go to Settings → MCP Servers
+   - Click "Add Server"
+
+2. **Configure MCP Server**
+   
+   ![Cherry Studio MCP Configuration](images/cherry-studio-config.png)
+
+3. **Save and Connect**
+   - Click "Save" to add the server
+   - The server will automatically connect
+   - You can now use the watermark tools in Cherry Studio
+   
+   ![Cherry Studio MCP Tools](images/cherry-studio-tools.png)
+
+## 📦 Preview
+
+![preview-1.png](images/preview-1.png)
+
+![preview-2.png](images/preview-2.png)
+
+![preview-3.png](images/preview-3.png)
+
+![preview-4.png](images/preview-4.png)
 
 ## 🚀 Installation
 
@@ -35,9 +67,7 @@ uv pip install -e .
 pip install fastmcp pillow
 ```
 
-## 📖 Usage
-
-### Start the MCP Server
+### Start the MCP Server (Standalone)
 
 ```bash
 python main.py
@@ -45,10 +75,10 @@ python main.py
 
 After the server starts, you will see output similar to:
 ```
-╭─ FastMCP 2.0 ────────────────────────────────────────╮
-│   🖥️  Server name:     Smart Image Watermark Server  │
-│   📦 Transport:       STDIO                         │
-╰────────────────────────────────────────────────────╯
+╭─ FastMCP 2.0 ──────────────────────────────────────────────────────────────────╮
+│   🖥️  Server name:     Stamp it - Apply a full-screen watermark to an image    │
+│   📦 Transport:       STDIO                                                    │
+╰────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ### Available MCP Tools
@@ -190,7 +220,7 @@ Output: document.pdf_watermark.png
 ## 📂 Project Structure
 
 ```
-mcp_watermarks/
+stampit/
 ├── main.py                   # Main program and MCP server
 ├── pyproject.toml            # Project configuration
 ├── README.md                 # English project documentation
@@ -313,4 +343,4 @@ For questions or suggestions:
 
 ---
 
-**🎉 Thank you for using MCP Watermark Server!**
+**🎉 Thank you for using Stamp it!**
