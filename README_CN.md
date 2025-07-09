@@ -36,6 +36,34 @@
    
    ![Cherry Studio MCP 工具](images/cherry-studio-tools.png)
 
+#### Cursor
+
+1. **打开 Cursor 设置**
+   - 使用快捷键 `Cmd+,` (Mac) 或 `Ctrl+,` (Windows/Linux)
+   - 或者点击 设置 → 偏好设置
+
+2. **配置 MCP 服务器**
+   - 找到 "MCP 服务器" 配置选项
+   - 添加以下配置：
+
+```json
+{
+  "mcpServers": {
+    "stampit": {
+      "command": "uvx",
+      "args": [
+        "mcp-stampit"
+      ]
+    }
+  }
+}
+```
+
+3. **保存并重启**
+   - 保存配置文件
+   - 重启 Cursor 以生效
+   - 现在可以在 Cursor 中使用水印工具
+
 ## 📦 预览
 
 ![preview-1.png](images/preview-1.png)

@@ -39,6 +39,34 @@ A professional image watermarking service built with FastMCP, supporting both te
    
    ![Cherry Studio MCP Tools](images/cherry-studio-tools.png)
 
+#### Cursor
+
+1. **Open Cursor Settings**
+   - Use shortcut `Cmd+,` (Mac) or `Ctrl+,` (Windows/Linux)
+   - Or click Settings → Preferences
+
+2. **Configure MCP Server**
+   - Find "MCP Servers" configuration option
+   - Add the following configuration:
+
+```json
+{
+  "mcpServers": {
+    "stampit": {
+      "command": "uvx",
+      "args": [
+        "mcp-stampit"
+      ]
+    }
+  }
+}
+```
+
+3. **Save and Restart**
+   - Save the configuration file
+   - Restart Cursor for changes to take effect
+   - You can now use the watermark tools in Cursor
+
 ## 📦 Preview
 
 ![preview-1.png](images/preview-1.png)
