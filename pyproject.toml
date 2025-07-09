@@ -1,9 +1,13 @@
 [project]
 name = "mcp-watermarks"
 version = "0.1.0"
-description = "Add your description here"
+description = "A lightweight MCP component for adding text watermarks to pictures."
 readme = "README.md"
 requires-python = ">=3.13"
+authors = [
+    {name = "Liu Hao", email = "liu.hao1443@gmail.com"}
+]
+license = "Apache-2.0"
 dependencies = [
     "fastmcp>=0.1.0",
     "pillow>=10.0.0",
@@ -14,3 +18,7 @@ dependencies = [
 
 [project.scripts]
 mcp-watermarks = "mcp_watermarks:main"
+
+[project.urls]
+"Homepage" = "https://github.com/LiuHao-1443/mcp-watermarks"
+"Bug Tracker" = "https://github.com/LiuHao-1443/mcp-watermarks/issues"
