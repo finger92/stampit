@@ -1,7 +1,7 @@
 [project]
 name = "mcp-watermarks"
 version = "0.1.0"
-description = "A lightweight MCP component for adding text watermarks to pictures."
+description = "A lightweight MCP component for adding text watermarks to pictures"
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [
