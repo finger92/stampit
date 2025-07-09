@@ -1,5 +1,5 @@
 """
-MCP Water Mark Server - 为图片添加满屏水印功能
+Stamp it - 为图片添加满屏水印
 支持文字水印和图片水印
 """
 
@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 import math
 
 # 创建 FastMCP 实例
-mcp = FastMCP("智能图片水印服务器")
+mcp = FastMCP("Stamp it - 为图片添加满屏水印")
 
 # 支持的图片格式
 SUPPORTED_FORMATS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'}
