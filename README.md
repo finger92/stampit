@@ -1,155 +1,157 @@
-# 🌊 MCP 智能水印服务器
+# 🌊 MCP Watermark Server
 
-一个基于 FastMCP 的专业图片水印服务，支持文字水印和图片水印，具备智能颜色适配功能。
+A professional image watermarking service built with FastMCP, supporting both text and image watermarks with intelligent color adaptation.
 
-## ✨ 主要特性
+[中文文档](README_CN.md) | English
 
-- 🖼️ **双水印模式**: 支持文字水印和图片水印
-- 📂 **本地文件处理**: 专业的本地图片文件处理
-- 🎨 **智能自适应颜色**: 根据图片亮度自动选择最佳水印颜色
-- 📐 **倾斜水印效果**: 可自定义角度的倾斜水印（默认30度右上倾斜）
-- 🌍 **多语言支持**: 中文、英文、日文、韩文等多种语言
-- 🎯 **高密度覆盖**: 完整覆盖图片的每个角落，无遗漏
-- 💎 **高清晰度**: BICUBIC重采样技术，边缘平滑
-- 📁 **智能保存**: 自动保存在原图同目录，保持文件组织
-- ⚡ **性能优化**: 字体缓存、智能缩放、内存管理
-- 🛠️ **格式丰富**: 支持7种常见图片格式
+## ✨ Key Features
 
-## 🚀 安装
+- 🖼️ **Dual Watermark Modes**: Support for both text and image watermarks
+- 📂 **Local File Processing**: Professional local image file handling
+- 🎨 **Smart Adaptive Colors**: Automatic color selection based on image brightness
+- 📐 **Tilted Watermark Effects**: Customizable angle tilting (default 30° upward right)
+- 🌍 **Multi-language Support**: Chinese, English, Japanese, Korean and more
+- 🎯 **High-density Coverage**: Complete coverage of every corner with no gaps
+- 💎 **High Definition**: BICUBIC resampling for smooth edges
+- 📁 **Smart Saving**: Auto-save in the same directory as original image
+- ⚡ **Performance Optimized**: Font caching, intelligent scaling, memory management
+- 🛠️ **Rich Format Support**: Supports 7 common image formats
 
-### 使用 uv (推荐)
+## 🚀 Installation
+
+### Using uv (Recommended)
 
 ```bash
-# 安装依赖
+# Install dependencies
 uv pip install fastmcp pillow
 
-# 或使用项目配置安装
+# Or install using project configuration
 uv pip install -e .
 ```
 
-### 使用 pip
+### Using pip
 
 ```bash
 pip install fastmcp pillow
 ```
 
-## 📖 使用方法
+## 📖 Usage
 
-### 启动 MCP 服务器
+### Start the MCP Server
 
 ```bash
 python main.py
 ```
 
-服务器启动后，你将看到类似以下的输出：
+After the server starts, you will see output similar to:
 ```
 ╭─ FastMCP 2.0 ────────────────────────────────────────╮
-│   🖥️  Server name:     智能图片水印服务器             │
+│   🖥️  Server name:     Smart Image Watermark Server  │
 │   📦 Transport:       STDIO                         │
 ╰────────────────────────────────────────────────────╯
 ```
 
-### 可用的 MCP 工具
+### Available MCP Tools
 
-#### `add_text_watermark` - 文字水印
+#### `add_text_watermark` - Text Watermark
 
-为图片添加智能文字水印，支持多语言和自适应颜色。
+Add intelligent text watermarks to images with multi-language support and adaptive colors.
 
-**参数:**
-- `image_path` (str): 本地图片文件路径
-- `watermark_text` (str): 水印文字内容
-- `angle` (float, 可选): 水印倾斜角度，默认30度
+**Parameters:**
+- `image_path` (str): Local image file path
+- `watermark_text` (str): Watermark text content
+- `angle` (float, optional): Watermark tilt angle, default 30°
 
-**使用示例:**
+**Usage Examples:**
 ```python
-# 基础文字水印
-add_text_watermark("/Users/photos/vacation.jpg", "我的版权")
+# Basic text watermark
+add_text_watermark("/Users/photos/vacation.jpg", "My Copyright")
 
-# 自定义角度
-add_text_watermark("./document.png", "机密文件", angle=45)
+# Custom angle
+add_text_watermark("./document.png", "Confidential", angle=45)
 
-# 多语言水印
-add_text_watermark("photo.jpg", "Copyright © 2024 版权所有")
+# Multi-language watermark
+add_text_watermark("photo.jpg", "Copyright © 2024 All Rights Reserved")
 ```
 
-#### `add_image_watermark` - 图片水印
+#### `add_image_watermark` - Image Watermark
 
-为图片添加图片水印，支持logo、签名等图片作为水印。
+Add image watermarks to photos, supporting logos, signatures, and other images as watermarks.
 
-**参数:**
-- `image_path` (str): 本地图片文件路径
-- `watermark_image_path` (str): 水印图片文件路径
-- `angle` (float, 可选): 水印倾斜角度，默认30度
+**Parameters:**
+- `image_path` (str): Local image file path
+- `watermark_image_path` (str): Watermark image file path
+- `angle` (float, optional): Watermark tilt angle, default 30°
 
-**使用示例:**
+**Usage Examples:**
 ```python
-# 添加logo水印
+# Add logo watermark
 add_image_watermark("/Users/photos/product.jpg", "/Users/logos/company_logo.png")
 
-# 自定义角度的logo水印
+# Custom angle logo watermark
 add_image_watermark("photo.jpg", "signature.png", angle=0)
 
-# 品牌水印
+# Brand watermark
 add_image_watermark("marketing_image.jpg", "brand_watermark.png", angle=15)
 ```
 
-## 🎨 水印特性详解
+## 🎨 Watermark Features
 
-### 📝 文字水印特性
+### 📝 Text Watermark Features
 
-- **智能颜色自适应**
-  - 亮色图片: 自动使用深色水印 (RGB 20,20,20)
-  - 暗色图片: 自动使用浅色/白色水印 (RGB 240,240,240)
-  - 中等亮度: 智能选择对比度最佳的颜色
+- **Smart Color Adaptation**
+  - Bright images: Automatically use dark watermarks (RGB 20,20,20)
+  - Dark images: Automatically use light/white watermarks (RGB 240,240,240)
+  - Medium brightness: Intelligently select optimal contrast colors
 
-- **多语言字体支持**
-  - 自动检测并加载系统最佳中文字体
-  - 支持 PingFang SC、微软雅黑、黑体等
-  - 完美显示中文、日文、韩文、英文
+- **Multi-language Font Support**
+  - Auto-detect and load system's best Chinese fonts
+  - Support for PingFang SC, Microsoft YaHei, SimHei, etc.
+  - Perfect display of Chinese, Japanese, Korean, and English
 
-- **高质量渲染**
-  - 字体缓存技术，提升性能
-  - BICUBIC重采样，边缘平滑
-  - 居中渲染，旋转效果佳
+- **High-quality Rendering**
+  - Font caching for improved performance
+  - BICUBIC resampling for smooth edges
+  - Centered rendering with excellent rotation effects
 
-### 🖼️ 图片水印特性
+### 🖼️ Image Watermark Features
 
-- **智能缩放**: 自动缩放到合适大小（默认15%）
-- **透明度控制**: 自动调整透明度，不影响原图
-- **保持比例**: 保持水印图片的宽高比
-- **高质量缩放**: 使用LANCZOS算法，确保清晰度
+- **Smart Scaling**: Auto-scale to appropriate size (default 15%)
+- **Opacity Control**: Automatic opacity adjustment without affecting original image
+- **Aspect Ratio Preservation**: Maintain watermark image aspect ratio
+- **High-quality Scaling**: Use LANCZOS algorithm for clarity
 
-### 🎯 布局算法
+### 🎯 Layout Algorithm
 
-- **完整覆盖**: 从图片边界外开始，确保100%覆盖
-- **错位排列**: 奇偶行错位，视觉效果更自然
-- **密集分布**: 优化间距算法，密度比传统方法提升40%
-- **边缘处理**: 四个角落都有完整的水印覆盖
+- **Complete Coverage**: Start from outside image boundaries for 100% coverage
+- **Staggered Arrangement**: Odd-even row offset for more natural visual effect
+- **Dense Distribution**: Optimized spacing algorithm, 40% higher density than traditional methods
+- **Edge Handling**: Complete watermark coverage in all four corners
 
-## 📁 文件输出
+## 📁 File Output
 
-### 保存规则
-- **保存位置**: 自动保存在原图同一目录
-- **命名规则**: 原文件名 + `_watermark` + 扩展名
-- **格式保持**: 保持原图的文件格式和质量
-- **优化保存**: 启用压缩优化，减小文件大小
+### Save Rules
+- **Save Location**: Auto-save in the same directory as original image
+- **Naming Convention**: Original filename + `_watermark` + extension
+- **Format Preservation**: Maintain original image format and quality
+- **Optimized Saving**: Enable compression optimization to reduce file size
 
-### 输出示例
+### Output Examples
 ```
-输入: /Users/photos/vacation.jpg
-输出: /Users/photos/vacation_watermark.jpg
+Input:  /Users/photos/vacation.jpg
+Output: /Users/photos/vacation_watermark.jpg
 
-输入: ./designs/logo.png
-输出: ./designs/logo_watermark.png
+Input:  ./designs/logo.png
+Output: ./designs/logo_watermark.png
 
-输入: document.pdf.png
-输出: document.pdf_watermark.png
+Input:  document.pdf.png
+Output: document.pdf_watermark.png
 ```
 
-## 🛠️ 支持的图片格式
+## 🛠️ Supported Image Formats
 
-| 格式 | 扩展名 | 读取 | 保存 | 透明度 | 优化 |
-|------|--------|------|------|--------|------|
+| Format | Extensions | Read | Save | Transparency | Optimized |
+|--------|------------|------|------|--------------|-----------|
 | JPEG | .jpg, .jpeg | ✅ | ✅ | ❌ | ✅ |
 | PNG | .png | ✅ | ✅ | ✅ | ✅ |
 | GIF | .gif | ✅ | ✅ | ✅ | ✅ |
@@ -157,123 +159,124 @@ add_image_watermark("marketing_image.jpg", "brand_watermark.png", angle=15)
 | TIFF | .tiff, .tif | ✅ | ✅ | ✅ | ✅ |
 | WebP | .webp | ✅ | ✅ | ✅ | ✅ |
 
-## 🌍 多语言字体支持
+## 🌍 Multi-language Font Support
 
-### 支持的语言
-- **中文**: 简体中文、繁体中文
-- **日文**: ひらがな、カタカナ、漢字
-- **韩文**: 한글 (韩文字母)
-- **英文**: Latin 字符集
-- **其他**: 大部分 Unicode 字符
+### Supported Languages
+- **Chinese**: Simplified & Traditional Chinese
+- **Japanese**: ひらがな、カタカナ、漢字
+- **Korean**: 한글 (Hangul)
+- **English**: Latin character set
+- **Others**: Most Unicode characters
 
-### 字体优先级
+### Font Priority
 
-**macOS 系统:**
-1. PingFang SC (苹果默认中文字体)
-2. STHeiti Light (华文黑体)
-3. Hiragino Sans GB (冬青黑体)
-4. Arial Unicode (通用Unicode字体)
+**macOS System:**
+1. PingFang SC (Apple's default Chinese font)
+2. STHeiti Light (Chinese typography)
+3. Hiragino Sans GB (Winter Blue font)
+4. Arial Unicode (Universal Unicode font)
 
-**Windows 系统:**
-1. Microsoft YaHei (微软雅黑)
-2. SimSun (宋体)
-3. SimHei (黑体)
+**Windows System:**
+1. Microsoft YaHei
+2. SimSun
+3. SimHei
 
-**Linux 系统:**
+**Linux System:**
 1. DejaVu Sans
 2. Liberation Sans
 3. Noto Sans CJK
 4. WenQuanYi Zen Hei
 
-## 📂 项目结构
+## 📂 Project Structure
 
 ```
 mcp_watermarks/
-├── main.py                   # 主程序和MCP服务器
-├── pyproject.toml            # 项目配置文件
-├── README.md                 # 项目文档
-├── uv.lock                   # 依赖锁定文件
-└── build/                    # 构建文件目录
+├── main.py                   # Main program and MCP server
+├── pyproject.toml            # Project configuration
+├── README.md                 # English project documentation
+├── README_CN.md              # Chinese project documentation
+├── uv.lock                   # Dependency lock file
+└── LICENSE                   # License file
 ```
 
-## 🧪 快速测试
+## 🧪 Quick Testing
 
-### 测试文字水印
+### Test Text Watermark
 ```bash
-# 1. 启动服务器
+# 1. Start server
 python main.py
 
-# 2. 在MCP客户端中调用
-add_text_watermark("path/to/your/image.jpg", "测试水印")
+# 2. Call in MCP client
+add_text_watermark("path/to/your/image.jpg", "Test Watermark")
 ```
 
-### 测试图片水印
+### Test Image Watermark
 ```bash
-# 1. 准备一个logo图片
-# 2. 在MCP客户端中调用
+# 1. Prepare a logo image
+# 2. Call in MCP client
 add_image_watermark("path/to/your/photo.jpg", "path/to/logo.png")
 ```
 
-## ⚙️ 技术细节
+## ⚙️ Technical Details
 
-### 核心算法
-- **亮度计算**: 灰度转换 + 像素平均值算法
-- **颜色自适应**: 基于亮度阈值的四级分类系统
-- **位置计算**: 错位网格 + 边缘偏移算法
-- **渲染优化**: BICUBIC/LANCZOS重采样技术
+### Core Algorithms
+- **Brightness Calculation**: Grayscale conversion + pixel average algorithm
+- **Color Adaptation**: Four-tier classification system based on brightness thresholds
+- **Position Calculation**: Staggered grid + edge offset algorithm
+- **Rendering Optimization**: BICUBIC/LANCZOS resampling technology
 
-### 性能优化
-- **字体缓存**: 避免重复加载字体文件
-- **智能缩放**: 亮度计算使用50x50小图提升速度
-- **内存管理**: 及时释放临时图层和缓存
-- **批量处理**: 支持高效的批量图片处理
+### Performance Optimization
+- **Font Caching**: Avoid repeated font file loading
+- **Smart Scaling**: Brightness calculation using 50x50 small images for speed
+- **Memory Management**: Timely release of temporary layers and cache
+- **Batch Processing**: Support for efficient batch image processing
 
-### 质量保证
-- **边缘平滑**: 使用高质量重采样算法
-- **颜色保真**: 保持原图色彩空间和模式
-- **透明度处理**: 正确处理RGBA通道
-- **格式兼容**: 智能转换不同图片格式
+### Quality Assurance
+- **Edge Smoothing**: Use high-quality resampling algorithms
+- **Color Fidelity**: Preserve original image color space and mode
+- **Transparency Handling**: Proper RGBA channel processing
+- **Format Compatibility**: Smart conversion between different image formats
 
-## 🔧 高级配置
+## 🔧 Advanced Configuration
 
-可以通过修改 `WatermarkConfig` 类来调整参数：
+You can adjust parameters by modifying the `WatermarkConfig` class:
 
 ```python
 class WatermarkConfig:
-    DEFAULT_FONT_SIZE = 36          # 默认字体大小
-    DEFAULT_ANGLE = 30              # 默认倾斜角度
-    SPACING_X_FACTOR = 1.1          # 水平间距倍数
-    SPACING_Y_FACTOR = 0.9          # 垂直间距倍数
-    BRIGHTNESS_THRESHOLDS = {       # 亮度阈值
+    DEFAULT_FONT_SIZE = 36          # Default font size
+    DEFAULT_ANGLE = 30              # Default tilt angle
+    SPACING_X_FACTOR = 1.1          # Horizontal spacing multiplier
+    SPACING_Y_FACTOR = 0.9          # Vertical spacing multiplier
+    BRIGHTNESS_THRESHOLDS = {       # Brightness thresholds
         'very_bright': 180,
         'medium': 120,
         'dark': 60
     }
 ```
 
-### 自定义参数建议
-- **密集水印**: 降低间距倍数 (0.8, 0.7)
-- **稀疏水印**: 提高间距倍数 (1.5, 1.3)
-- **大字体**: 提高字体大小 (48, 54)
-- **小字体**: 降低字体大小 (24, 30)
+### Custom Parameter Suggestions
+- **Dense Watermarks**: Lower spacing multipliers (0.8, 0.7)
+- **Sparse Watermarks**: Higher spacing multipliers (1.5, 1.3)
+- **Large Fonts**: Increase font size (48, 54)
+- **Small Fonts**: Decrease font size (24, 30)
 
-## 🎛️ 使用技巧
+## 🎛️ Usage Tips
 
-### 文字水印技巧
-1. **版权信息**: 使用 "© 2024 Company Name" 格式
-2. **多语言**: 混合中英文效果更佳
-3. **角度选择**: 30度最自然，45度更醒目，0度适合文档
+### Text Watermark Tips
+1. **Copyright Info**: Use "© 2024 Company Name" format
+2. **Multi-language**: Mixed Chinese-English works better
+3. **Angle Selection**: 30° most natural, 45° more prominent, 0° for documents
 
-### 图片水印技巧
-1. **Logo设计**: 使用透明背景的PNG格式
-2. **尺寸控制**: Logo不宜过大，建议控制在原图15%以内
-3. **颜色搭配**: 选择与原图对比度合适的Logo颜色
+### Image Watermark Tips
+1. **Logo Design**: Use transparent background PNG format
+2. **Size Control**: Logo shouldn't be too large, recommend within 15% of original
+3. **Color Matching**: Choose logo colors with appropriate contrast to original image
 
-## 💡 最佳实践
+## 💡 Best Practices
 
-### 批量处理建议
+### Batch Processing Recommendations
 ```python
-# 推荐的批量处理方式
+# Recommended batch processing method
 images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"]
 watermark_text = "© 2024 My Company"
 
@@ -282,32 +285,32 @@ for image_path in images:
     print(result)
 ```
 
-### 性能优化建议
-1. **同批次使用相同字体大小**，利用字体缓存
-2. **避免频繁改变角度**，减少计算开销
-3. **图片水印尽量使用小尺寸**，提升处理速度
+### Performance Optimization Suggestions
+1. **Use same font size in batches** to leverage font caching
+2. **Avoid frequent angle changes** to reduce computational overhead
+3. **Use small-sized image watermarks** to improve processing speed
 
-## 📄 许可证
+## 📄 License
 
-本项目遵循 Apache 2.0 许可证，可自由使用和修改。
+This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
-### 贡献指南
-1. Fork 项目
-2. 创建功能分支
-3. 提交更改
-4. 发起 Pull Request
+### Contributing Guidelines
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Submit a Pull Request
 
-## 📞 技术支持
+## 📞 Technical Support
 
-如有问题或建议，请：
-1. 提交 GitHub Issue
-2. 查看项目文档
-3. 联系开发团队
+For questions or suggestions:
+1. Submit GitHub Issues
+2. Check project documentation
+3. Contact development team
 
 ---
 
-**🎉 感谢使用 MCP 智能水印服务器！**
+**🎉 Thank you for using MCP Watermark Server!**
