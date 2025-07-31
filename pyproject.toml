@@ -1,6 +1,6 @@
 [project]
 name = "netmind-mcp-stampit"
-version = "1.1.0"
+version = "1.1.1"
 description = "A lightweight MCP component for adding text watermarks to pictures"
 readme = "README.md"
 requires-python = ">=3.12"
